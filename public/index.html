@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <base href="<%= htmlWebpackPlugin.options.publicPath %>" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=0.75, maximum-scale=0.75, user-scalable=no"
+    />
+    <meta name="theme-color" content="#000000" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10; IE=11; IE=Edge" />
+    <!--STYLES OF #vtb-index-loader -->
+    <style>
+      #vtb-index-loader{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(255,255,255,0.5);z-index:1005}#vtb-index-loader .preloader{position:absolute;top:50%;left:50%;width:25rem;height:1.5rem;margin-top:-.75rem;margin-left:-12.5rem;transform:translateZ(0);overflow:hidden;-o-transform:translateZ(0);-ms-transform:translateZ(0);-moz-transform:translateZ(0);-webkit-transform:translateZ(0)}#vtb-index-loader .preloader i{display:block;position:absolute;top:50%;left:50%;width:1.5rem;height:1.5rem;margin:-.75rem 0 0;border:0 solid #fff;border-radius:50%;background:#fff;text-indent:-9999px;opacity:0;overflow:hidden;-webkit-transform:translate3d(-12.5rem,0,0)}#vtb-index-loader .preloader i:nth-child(1){background:#0af;animation:vtb-index-animation 1.75s ease-in-out infinite;-o-animation:vtb-index-animation 1.75s ease-in-out infinite;-ms-animation:vtb-index-animation 1.75s ease-in-out infinite 0;-moz-animation:vtb-index-animation 1.75s ease-in-out infinite 0s;-webkit-animation:vtb-index-animation 1.75s ease-in-out infinite 0s}#vtb-index-loader .preloader i:nth-child(2){background:#1b81ee;animation:vtb-index-animation 1.75s ease-in-out infinite .3s;-o-animation:vtb-index-animation 1.75s ease-in-out infinite .3s;-ms-animation:vtb-index-animation 1.75s ease-in-out infinite .3s;-moz-animation:vtb-index-animation 1.75s ease-in-out infinite .3s;-webkit-animation:vtb-index-animation 1.75s ease-in-out infinite .3s}#vtb-index-loader .preloader i:nth-child(3){background:#003c96;animation:vtb-index-animation 1.75s ease-in-out infinite .6s;-o-animation:vtb-index-animation 1.75s ease-in-out infinite .6s;-ms-animation:vtb-index-animation 1.75s ease-in-out infinite .6s;-moz-animation:vtb-index-animation 1.75s ease-in-out infinite .6s;-webkit-animation:vtb-index-animation 1.75s ease-in-out infinite .6s}@keyframes vtb-index-animation{0%{transform:translate3d(-12.5rem,0,0);opacity:0;-o-transform:translate3d(-12.5rem,0,0);-ms-transform:translate3d(-12.5rem,0,0);-moz-transform:translate3d(-12.5rem,0,0);-webkit-transform:translate3d(-12.5rem,0,0)}30%,70%{opacity:1}100%{transform:translate3d(11rem,0,0);opacity:0;-o-transform:translate3d(11rem,0,0);-ms-transform:translate3d(11rem,0,0);-moz-transform:translate3d(11rem,0,0);-webkit-transform:translate3d(11rem,0,0)}}
+    </style>
+    <!--STYLES OF #vtb-index-loader -->
+  
+    <meta charset="UTF-8" />
+    <title>Портал корпоративного бизнеса</title>
+  </head>
+  <body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root">
+    <div id="vtb-index-loader">
+      <div class="preloader">
+        <i>.</i>
+        <i>.</i>
+        <i>.</i>
+      </div>
+    </div>
+    <script>
+      // Detect old browser and show alert
+      if (navigator.userAgent.indexOf("MSIE") !== -1) {
+        document.body.innerHTML = '<style>.browser-alert{position: fixed; top: 0; bottom: 0; left: 0; right: 0; background: rgba(0, 0 ,0 , .85);}.panel{color: floralwhite; padding: .5rem; font-size: 1.2rem; font-family: Arial, Helvetica, sans-serif; margin: 10% auto 0 auto; max-width: 60rem;}.panel-heading{font-size: 2rem; margin-bottom: 1rem;}.text-muted{color: #ccc;}app-root{display: none;}</style><div class="browser-alert"> <div class="panel"> <div class="panel-heading">У вас старая версия браузера!<span class="text-muted"> / Your browser is outdated!</span></div><div class="panel-body"><p>Вы пользуетесь устаревшей версией браузера Internet Explorer или находитесь в режиме совместимости.<br>Пожалуйста, <strong>обратитесь к системному администратору</strong> для устранения данной проблемы.</p><p class="text-muted">You are using outdated version of Internet Explorer or are in compatibility mode.<br>Please contact your system administrator to resolve the problem</p></div></div></div>';
+      }
+    </script>
+  </div>
+  </body>
+</html>

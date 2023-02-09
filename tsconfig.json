@@ -1,0 +1,37 @@
+{
+  "include": ["src/**/*"],
+  "compilerOptions": {
+    "jsx": "react",
+    "skipLibCheck": true,
+    "target": "esnext",
+    "module": "esnext",
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "typeRoots": ["./src/@types", "./node_modules/@types"],
+    "noEmitOnError": true,
+    "noImplicitAny": false,
+    "strict": true,
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "removeComments": true,
+    "isolatedModules": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "baseUrl": "./src",
+    "strictPropertyInitialization": false,
+    "paths": {
+      "app/*": ["./app/*"],
+      "constants/*": ["./constants/*"],
+      "admiralComponents/*": ["./admiralComponents/*"],
+      "components/*": ["./components/*"],
+      "pages/*": ["./pages/*"],
+      "utils/*": ["./utils/*"],
+      "store/*": ["./store/*"],
+      "types/*": ["./types/*"],
+    }
+  }
+}
