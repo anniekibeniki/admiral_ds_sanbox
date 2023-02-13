@@ -17,9 +17,9 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 ## Development
 @admiral-ds/react-ui (https://github.com/AdmiralDS/react-ui) требует зависимостей :
-- 1) styled-components > 5.1.0
-- 2) react > 16.0.0
-- 3)react-dom > 16.0.0
+- styled-components > 5.1.0
+- react > 16.0.0
+- react-dom > 16.0.0
 
 
 ### Рекомендуемые плагины для VSCode:

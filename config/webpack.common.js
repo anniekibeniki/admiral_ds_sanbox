@@ -1,113 +1,80 @@
-const paths = require('./paths');
-const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const DefinePlugin = require('webpack').DefinePlugin;
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const appName = require('../package.json').name;
-const CircularDependencyPlugin = require('circular-dependency-plugin');
+const paths = require("./paths");
+const path = require("path");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const DefinePlugin = require("webpack").DefinePlugin;
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const appName = require("../package.json").name;
+const CircularDependencyPlugin = require("circular-dependency-plugin");
 
-module.exports = env => {
+module.exports = (env) => {
   const publicPath = paths.publicUrl;
   const publicURL = publicPath.substring(0, publicPath.length - 1);
 
   return {
-    entry: ['/index.tsx'].map(
-      pathTail => paths.src + pathTail,
-    ),
+    entry: ["/index.tsx"].map((pathTail) => paths.src + pathTail),
     output: {
       path: paths.build,
-      publicPath: 'auto',
-      filename: 'js/[name].[contenthash].js',
-      environment: {
-        arrowFunction: false,
-        destructuring: false,
-        dynamicImport: false,
-        forOf: false,
-        module: false,
-        const: false,
-        bigIntLiteral: false,
-      },
+      publicPath: "auto",
+      filename: "js/[name].[contenthash].js",
     },
     resolve: {
       alias: {
         src: paths.src,
-        app: path.resolve(paths.src, 'app/'),
-        constants: path.resolve(paths.src, 'constants/'),
-        admiralComponents: path.resolve(paths.src, 'admiralComponents/'),
-        components: path.resolve(paths.src, 'components/'),
-        pages: path.resolve(paths.src, 'pages/'),
-        utils: path.resolve(paths.src, 'utils/'),
-        store: path.resolve(paths.src, 'store/'),
-        types: path.resolve(paths.src, 'types/'),
-        '~/assets/fonts/fontawesome': path.resolve(
-          paths.nodeModules,
-          '@fortawesome',
-          'fontawesome-free',
-          'webfonts',
-        ),
-        'emotion-theming': '@emotion/react',
-        '~/assets': path.resolve(paths.nodeModules, '@vtb', 'assets', 'assets'),
-        '../assets': path.resolve(
-          paths.nodeModules,
-          '@vtb',
-          'assets',
-          'assets',
-        ),
+        app: path.resolve(paths.src, "app/"),
+        constants: path.resolve(paths.src, "constants/"),
+        components: path.resolve(paths.src, "components/"),
+        pages: path.resolve(paths.src, "pages/"),
+        utils: path.resolve(paths.src, "utils/"),
       },
-      extensions: ['.tsx', '.ts', '.js'],
+      extensions: [".tsx", ".ts", ".js"],
     },
     module: {
       rules: [
         {
           test: /\.js$/,
-          enforce: 'pre',
-          use: ['source-map-loader'],
+          enforce: "pre",
+          use: ["source-map-loader"],
         },
         {
           test: /\.(ts|js)x?$/,
-          include: [
-            paths.src,
-          ],
+          include: [paths.src],
           use: {
-            loader: 'babel-loader',
+            loader: "babel-loader",
             options: {
               extends: paths.babelConfig,
             },
           },
         },
         {
-          test: /\.(png|jpe?g|gif|svg)$/i,
-          exclude: [
-            /node_modules(\\|\/)@openvtb(\\|\/)admiral-icons(\\|\/)/,
-          ],
+          test: /\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$/,
+          type: "asset/resource",
+        },
+        {
+          test: /\.svg$/,
           use: [
             {
-              loader: 'file-loader',
+              loader: "@svgr/webpack",
               options: {
-                name: 'images/[name].[ext]',
+                prettier: false,
+                svgo: false,
+                svgoConfig: {
+                  plugins: [{ removeViewBox: false }],
+                },
+                titleProp: true,
+                ref: true,
+              },
+            },
+            {
+              loader: "file-loader",
+              options: {
+                name: "static/media/[name].[hash].[ext]",
               },
             },
           ],
-        },
-        {
-          test: /\.svg$/i,
-          include: [
-            /node_modules(\\|\/)@openvtb(\\|\/)admiral-icons(\\|\/)/,
-          ],
-          issuer: /\.[jt]sx?$/,
-          use: ['@svgr/webpack', 'url-loader'],
-        },
-        {
-          test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: 'fonts/[name].[ext]',
-              },
-            },
-          ],
+          issuer: {
+            and: [/\.(ts|tsx|js|jsx|md|mdx)$/],
+          },
         },
       ],
     },
@@ -117,17 +84,17 @@ module.exports = env => {
     plugins: [
       new CleanWebpackPlugin(),
       new DefinePlugin({
-        'process.env.PUBLIC_URL': JSON.stringify(publicURL),
-        'process.env.APP_CONFIG_NAME': JSON.stringify(appName),
+        "process.env.PUBLIC_URL": JSON.stringify(publicURL),
+        "process.env.APP_CONFIG_NAME": JSON.stringify(appName),
       }),
       new HtmlWebpackPlugin({
-        template: paths.public + '/index.html',
-        favicon: paths.public + '/favicon.ico',
+        template: paths.public + "/index.html",
+        favicon: paths.public + "/favicon.ico",
         publicPath: publicPath,
       }),
       new MiniCssExtractPlugin({
-        filename: 'css/[name].[contenthash:8].css',
-        chunkFilename: 'css/[name].[contenthash:8].chunk.css',
+        filename: "css/[name].[contenthash:8].css",
+        chunkFilename: "css/[name].[contenthash:8].chunk.css",
       }),
       new CircularDependencyPlugin({
         exclude: /a\.js|node_modules/,

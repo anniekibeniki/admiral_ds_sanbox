@@ -1,35 +1,35 @@
-const { mergeWithRules, merge } = require('webpack-merge');
-const paths = require('./paths');
-const common = require('./webpack.common.js');
-const devServer = require('./webpack.devServer');
+const { mergeWithRules, merge } = require("webpack-merge");
+const paths = require("./paths");
+const common = require("./webpack.common.js");
+const devServer = require("./webpack.devServer");
 
-const webpack = require('webpack');
-const Dotenv = require('dotenv-webpack');
+const webpack = require("webpack");
+const Dotenv = require("dotenv-webpack");
 
-module.exports = env => {
+module.exports = (env) => {
   const result = mergeWithRules({
     module: {
       rules: {
-        test: 'match',
+        test: "match",
         use: {
-          loader: 'match',
-          options: 'replace',
+          loader: "match",
+          options: "replace",
         },
       },
     },
   })(common(env), {
-    mode: 'development',
-    devtool: 'eval-source-map',
+    mode: "development",
+    devtool: "eval-source-map",
     module: {
       rules: [
         {
           test: /\.(ts|js)x?$/,
           use: {
-            loader: require.resolve('babel-loader'),
+            loader: require.resolve("babel-loader"),
             options: {
               compact: false,
               extends: paths.babelConfig,
-              plugins: [require.resolve('react-refresh/babel')].filter(Boolean),
+              plugins: [require.resolve("react-refresh/babel")].filter(Boolean),
             },
           },
         },
@@ -37,15 +37,15 @@ module.exports = env => {
           test: /\.s(a|c)ss$/,
           use: [
             {
-              loader: 'css-loader',
+              loader: "css-loader",
               options: {
                 importLoaders: 4,
                 sourceMap: true,
               },
             },
             {
-              loader: 'postcss-loader',
-              ident: 'postcss',
+              loader: "postcss-loader",
+              ident: "postcss",
               options: {
                 sourceMap: true,
               },
@@ -59,8 +59,8 @@ module.exports = env => {
   const withPrependentRules = mergeWithRules({
     module: {
       rules: {
-        test: 'match',
-        use: 'prepend',
+        test: "match",
+        use: "prepend",
       },
     },
   })(result, {
@@ -68,15 +68,15 @@ module.exports = env => {
       rules: [
         {
           test: /\.s(a|c)ss$/,
-          use: ['style-loader'],
+          use: ["style-loader"],
         },
         {
           test: /\.(css)$/,
           use: [
-            'style-loader',
-            'css-loader',
+            "style-loader",
+            "css-loader",
             {
-              loader: 'postcss-loader',
+              loader: "postcss-loader",
               options: {
                 sourceMap: true,
               },
@@ -88,7 +88,7 @@ module.exports = env => {
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new Dotenv({
-        path: './config/.env.development',
+        path: "./config/.env.development",
       }),
     ].filter(Boolean),
   });

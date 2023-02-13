@@ -28,6 +28,7 @@
   "rules": {
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "import/no-cycle": 0,
     "react/prop-types": 0,
     "prettier/prettier": ["error"],
     "react-hooks/rules-of-hooks": "error",
@@ -55,30 +56,8 @@
     "@typescript-eslint/no-var-requires": "off",
 
     "semi": "warn",
-    "import/no-cycle": "error",
-    "import/no-self-import": "error",
     "import/named": "off",
-    "import/namespace": [
-      "error",
-      {
-        "allowComputed": true
-      }
-    ],
-    "import/no-anonymous-default-export": [
-      "error",
-      {
-        "allowArrowFunction": true,
-        "allowObject": true
-      }
-    ],
-    "import/no-duplicates": "error",
     "import/no-unresolved": "off",
-    "import/no-useless-path-segments": [
-      "error",
-      {
-        "noUselessIndex": true
-      }
-    ],
     "jsx-a11y/alt-text": "warn",
     "jsx-a11y/anchor-is-valid": "off",
     "jsx-a11y/tabindex-no-positive": "off",

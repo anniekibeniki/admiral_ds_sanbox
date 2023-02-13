@@ -26,12 +26,9 @@
     "paths": {
       "app/*": ["./app/*"],
       "constants/*": ["./constants/*"],
-      "admiralComponents/*": ["./admiralComponents/*"],
       "components/*": ["./components/*"],
       "pages/*": ["./pages/*"],
       "utils/*": ["./utils/*"],
-      "store/*": ["./store/*"],
-      "types/*": ["./types/*"],
     }
   }
 }
